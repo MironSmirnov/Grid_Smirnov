@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Grid_Smirnov
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Ajaplaan : ContentPage
     {
         TimePicker tpicker;
         Picker picker;
-        public MainPage()
+        public Ajaplaan()
         {
             Grid gr = new Grid
             {
@@ -47,12 +48,6 @@ namespace Grid_Smirnov
             picker.Items.Add("Иду спать");
 
             gr.Children.Add(picker, 0, 0);
-
-            tpicker = new TimePicker()
-            {
-                //Time = new TimeSpan(18,0,0)
-                Time
-            }
         }
     }
 }
