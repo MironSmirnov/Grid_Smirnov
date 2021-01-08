@@ -11,9 +11,10 @@ namespace Grid_Smirnov
 {
     public partial class MainPage : ContentPage
     {
-        TimePicker tpicker;
-        Picker picker;
+        TimePicker picker;
         Entry entry;
+        Image img;
+        Label lbl;
         public MainPage()
         {
             Grid gr = new Grid
@@ -30,90 +31,83 @@ namespace Grid_Smirnov
                     new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
                 }
             };
-            picker = new Picker
+            picker = new TimePicker()
             {
-                Title = "Plaan"
+                Time = new TimeSpan(0, 0, 0)
             };
-            picker.Items.Add("Просыпаюсь");
-            picker.Items.Add("Учеба");
-            picker.Items.Add("Дома");
-            picker.Items.Add("Обед");
-            picker.Items.Add("Прогулка");
-            picker.Items.Add("Ужин");
-            picker.Items.Add("Просмотр фильма");
-            picker.Items.Add("Прогулка с собакой");
-            picker.Items.Add("Подготовка ко сну");
-            picker.Items.Add("Чтение книги");
-            picker.Items.Add("Расстелание кровати");
-            picker.Items.Add("Иду спать");
-
-            gr.Children.Add(picker, 0, 0);
-            picker.PropertyChanged += Picker_PropertyChanged; ;
+            picker.PropertyChanged += Picker_PropertyChanged1;
+            gr.Children.Add(picker, 2, 1);
+            lbl = new Label()
+            {
+                Text = "встал с кровати",
+                TextColor = Color.Green,
+                FontSize = 20
+            };
+            gr.Children.Add(lbl, 1, 0);
+            img = new Image { Source = "vstal.jpg" };
+            gr.Children.Add(img, 0, 1);
+            Content = gr;
         }
 
-        private void Picker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Picker_PropertyChanged1(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
             {
-                var time = tpicker.Time.Hours;
-                if (time == 7)
-                {
-                    entry.Text = "Просыпаюсь";
-                }
-                else time = tpicker.Time.Hours;
+                var time = picker.Time.Hours;
                 if (time == 8.30)
                 {
                     entry.Text = "Учеба";
+                    img.Source = "vosem.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 16)
+                else if (time == 16)
                 {
                     entry.Text = "Дома";
+                    img.Source = "shestnats.jps";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 17)
+                else if (time == 17)
                 {
                     entry.Text = "Обед";
+                    img.Source = "pat.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 18)
+                else if (time == 18)
                 {
                     entry.Text = "Прогулка";
+                    img.Source = "progul.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 19)
+                else if (time == 19)
                 {
                     entry.Text = "Ужин";
+                    img.Source = "semnats.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 21)
+                else if (time == 21)
                 {
                     entry.Text = "Просмотр фильма";
+                    img.Source = "prosmotr.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 22)
+                else if (time == 22)
                 {
                     entry.Text = "Прогулка с собакой";
+                    img.Source = "desat.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 23.30)
+                else if (time == 23.30)
                 {
                     entry.Text = "Подготовка ко сну";
+                    img.Source = "krovat.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 23.50)
+                else if (time == 23.50)
                 {
                     entry.Text = "Чтение книги";
+                    img.Source = "stenie.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 00)
+                else if (time == 00)
                 {
                     entry.Text = "Расстелание кровати";
+                    img.Source = "rastel.jpg";
                 }
-                else time = tpicker.Time.Hours;
-                if (time == 00.20)
+                else if (time == 00.20)
                 {
                     entry.Text = "Иду спать";
+                    img.Source = "nots.jpg";
                 }
             }
         }
